@@ -1,0 +1,62 @@
+﻿<Page x:Class="PR6.Pages.WorkersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PR6.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WorkersPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="White">
+            <Label HorizontalAlignment="Center">Сотрудники</Label>
+            <DataGrid Background="White" VerticalScrollBarVisibility="Auto" Grid.Row="0" x:Name="WorkesDG" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,29,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Код должности" Binding="{Binding FK_Title}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Код разряда" Binding="{Binding FK_grade}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Код зарплаты" Binding="{Binding fin_salary_id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Код льгот" Binding="{Binding FK_extension}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Изменить">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border x:Name="BtnForEdit" CornerRadius="5"  PreviewMouseDown="BtnForEdit_PreviewMouseDown">
+                                    <Label  Foreground="AliceBlue" VerticalAlignment="Center" FontSize="14" HorizontalContentAlignment="Center">Изменить</Label>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Удалить">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border x:Name="BtnForDelete" CornerRadius="5"  PreviewMouseDown="BtnForDelete_PreviewMouseDown">
+                                    <Label  Foreground="AliceBlue" VerticalAlignment="Center" FontSize="14" HorizontalContentAlignment="Center">Удалить</Label>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Background="White">
+            <Border PreviewMouseDown="StatusPageOpenBTN_PreviewMouseDown" Width="175" Height="40" Grid.Row="1"  CornerRadius="5" HorizontalAlignment="Left" x:Name="StatusPageOpenBTN">
+                <Label Foreground="AliceBlue" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Center">Таблица со статусами</Label>
+            </Border>
+            <Border PreviewMouseDown="AddWorkersBTN_PreviewMouseDown" Width="175" Height="40" Grid.Row="1"  CornerRadius="5" x:Name="AddWorkersBTN">
+                <Label Foreground="AliceBlue" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Center">Добавить сотрудника</Label>
+            </Border>
+            <Border PreviewMouseDown="PrintToPDF_PreviewMouseDown" Width="175" HorizontalAlignment="Right" Height="40" Grid.Row="1" CornerRadius="5" x:Name="PrintToPDF">
+                <Label Foreground="AliceBlue" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Center">Экспорт в PDF</Label>
+            </Border>
+
+        </Grid>
+    </Grid>
+
+</Page>

@@ -1,0 +1,50 @@
+﻿<Window x:Class="PR6.Windows.AddWorker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PR6.Windows"
+        mc:Ignorable="d"
+        Title="AddWorker" Height="450" Width="478">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125*"/>
+            <ColumnDefinition Width="322*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbl" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" FontSize="16" FontWeight="DemiBold" Margin="0,0,0,7">Добавление сотрудника</Label>
+
+        <TextBox Grid.Column="1" Grid.Row="1" BorderBrush="Gray"  Foreground="Black" VerticalContentAlignment="Center"  TextAlignment="Center"  VerticalAlignment="Top" Margin="30,6,30,0" Height="28" x:Name="NameTB" />
+        <TextBlock Grid.Column="0" Grid.Row="1"  Height="25" IsHitTestVisible="False" Text="Имя" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+        <TextBox Grid.Column="1" Grid.Row="2" BorderBrush="Gray"  Foreground="Black" VerticalContentAlignment="Center"  TextAlignment="Center"  VerticalAlignment="Top" Margin="30,6,30,0" Height="28" x:Name="SurnameTB" />
+        <TextBlock Grid.Column="0" Grid.Row="2"  Height="25" IsHitTestVisible="False" Text="Фамилия" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+        <TextBox Grid.Column="1" Grid.Row="3" BorderBrush="Gray"  Foreground="Black" VerticalContentAlignment="Center"  TextAlignment="Center" Margin="30,6,30,10" x:Name="JobNameTB" />
+        <TextBlock Grid.Column="0" Grid.Row="3"  Height="25" IsHitTestVisible="False" Text="Код должности" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+        <TextBox Grid.Column="1" Grid.Row="4" BorderBrush="Gray"  Foreground="Black" VerticalContentAlignment="Center"  TextAlignment="Center"  VerticalAlignment="Top" Margin="30,6,30,0" Height="28" x:Name="CodeGradeTB" />
+        <TextBlock Grid.Column="0" Grid.Row="4"  Height="25" IsHitTestVisible="False" Text="Код разряда" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+        <TextBox HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="5" BorderBrush="Gray"  Foreground="Black" VerticalContentAlignment="Center"   VerticalAlignment="Top" Margin="30,6,30,0" Height="28" x:Name="CodeSalaryTB" />
+        <TextBlock Grid.Column="0" Grid.Row="5"  Height="25" IsHitTestVisible="False" Text="Код зарплаты" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Center"></TextBlock>
+
+        <Label Grid.Column="0" Grid.Row="6"  x:Name="EmpLabel" Width="84" Height="25" HorizontalAlignment="Center" Margin="0,10,0,9" >Код льготы</Label>
+        <TextBox HorizontalContentAlignment="Center" Grid.Row="6"  x:Name="CodeExt" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="1" Height="28" Width="276" Margin="30,0,0,0"/>
+
+        <Border Grid.Row="9" MouseDown="AddBTN_MouseDown"  x:Name="AddBTN" Padding="5" BorderThickness="1"  CornerRadius="10" Height="50" Grid.ColumnSpan="2" >
+            <TextBlock FontSize="16" x:Name="LabelOfBorder" Foreground="AliceBlue" Text="Добавить" TextAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>

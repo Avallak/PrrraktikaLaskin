@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ZarplataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Extensions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ext_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ext_percent" Type="int" />
+  </EntityType>
+  <EntityType Name="Gradation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grade" Type="int" />
+    <Property Name="coef" Type="float" />
+  </EntityType>
+  <EntityType Name="Salaries">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_Title" Type="int" />
+    <Property Name="FK_Grade" Type="int" />
+    <Property Name="FK_Ext" Type="int" />
+    <Property Name="Salary" Type="float" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Worker_id" Type="int" />
+    <Property Name="Salaries_id" Type="int" />
+    <Property Name="accrued" Type="float" />
+    <Property Name="Withheld" Type="float" />
+    <Property Name="payable" Type="float" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Titles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="job_title" Type="nvarchar" MaxLength="25" />
+    <Property Name="base_salary" Type="float" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FK_Title" Type="int" Nullable="false" />
+    <Property Name="FK_grade" Type="int" Nullable="false" />
+    <Property Name="fin_salary_id" Type="int" Nullable="false" />
+    <Property Name="FK_extension" Type="int" />
+  </EntityType>
+  <Association Name="FK_Status_Salaries">
+    <End Role="Salaries" Type="Self.Salaries" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salaries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Salaries_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Workers">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Worker_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Extensions">
+    <End Role="Extensions" Type="Self.Extensions" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Extensions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="FK_extension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Gradation">
+    <End Role="Gradation" Type="Self.Gradation" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gradation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="FK_grade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Salaries">
+    <End Role="Salaries" Type="Self.Salaries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salaries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="fin_salary_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Titles">
+    <End Role="Titles" Type="Self.Titles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Titles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="FK_Title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ZarplataModelContainer">
+    <EntitySet Name="Extensions" EntityType="Self.Extensions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gradation" EntityType="Self.Gradation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salaries" EntityType="Self.Salaries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Status_Salaries" Association="Self.FK_Status_Salaries">
+      <End Role="Salaries" EntitySet="Salaries" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Workers" Association="Self.FK_Status_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Extensions" Association="Self.FK_Workers_Extensions">
+      <End Role="Extensions" EntitySet="Extensions" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Gradation" Association="Self.FK_Workers_Gradation">
+      <End Role="Gradation" EntitySet="Gradation" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Salaries" Association="Self.FK_Workers_Salaries">
+      <End Role="Salaries" EntitySet="Salaries" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Titles" Association="Self.FK_Workers_Titles">
+      <End Role="Titles" EntitySet="Titles" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

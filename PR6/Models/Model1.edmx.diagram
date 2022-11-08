@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73f0cc0f0fb74ae696b3eea66c99cbca" Name="Diagram1">
+        <EntityTypeShape EntityType="ZarplataModel.Extensions" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.Gradation" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.Salaries" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.Status" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.Titles" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZarplataModel.Workers" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="ZarplataModel.FK_Workers_Extensions" ManuallyRouted="false" />
+        <AssociationConnector Association="ZarplataModel.FK_Workers_Gradation" ManuallyRouted="false" />
+        <AssociationConnector Association="ZarplataModel.FK_Status_Salaries" ManuallyRouted="false" />
+        <AssociationConnector Association="ZarplataModel.FK_Workers_Salaries" ManuallyRouted="false" />
+        <AssociationConnector Association="ZarplataModel.FK_Status_Workers" ManuallyRouted="false" />
+        <AssociationConnector Association="ZarplataModel.FK_Workers_Titles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
